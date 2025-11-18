@@ -1,0 +1,13 @@
+name: Comment on new issues
+
+on:
+  issues:
+    types: [opened]
+
+jobs:
+  show-github-context:
+    runs-on: ubuntu-latest
+    steps:
+        - name: "Github Context"
+          run: echo '${{ toJson(github.event)}}' | jq
+          shell: bash
