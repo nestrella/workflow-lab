@@ -11,3 +11,18 @@ jobs:
         - name: "Github Context"
           run: echo '${{ toJson(github.event)}}' | jq
           shell: bash
+
+   create-comment:
+    runs-on: ubuntu-latest
+    steps:
+        - name: "Comment on new issue"
+          uses: peter-evans/create-or-update-comment@v4
+          with:
+            issue-number: ${{ github.event.issue.number }}
+            body: |
+               This is a multiline test comment
+               - with Github **Markdown
+               - Created By [create-or-update-comment][1]
+
+               [1]: https://github.com/peter-evans/create-or-update-comment
+            reactions: eyes
